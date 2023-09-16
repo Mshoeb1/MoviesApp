@@ -1,0 +1,122 @@
+.popular-main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #181818;
+  font-family: 'Roboto';
+}
+
+.loader {
+  align-self: center;
+}
+
+.failure-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .fl-image {
+    width: 375px;
+    height: 267px;
+    margin-bottom: 15px;
+  }
+
+  .failure-para {
+    font-size: 20px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .fl-button {
+    width: 127px;
+    height: 48px;
+    text-align: center;
+    background-color: #ffffff;
+    color: #171f46;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 7px;
+  }
+
+  .popular-movie-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 40px;
+    padding-left: 0px;
+    list-style-type: none;
+  }
+
+  .popular-display-image {
+    height: 170px;
+    width: 275px;
+    border-radius: 8px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .popular-movie-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 20px;
+    padding-left: 0px;
+    list-style-type: none;
+  }
+
+  .popular-link {
+    list-style-type: none;
+  }
+  .pl-link {
+    text-decoration: none;
+  }
+
+  .popular-display-image {
+    height: 100px;
+    width: 90px;
+    border-radius: 8px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  .fl-image {
+    width: 233;
+    height: 172;
+    margin-bottom: 15px;
+  }
+
+  .failure-para {
+    font-size: 15px;
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
+
+  .fl-button {
+    width: 107;
+    height: 40;
+    text-align: center;
+    background-color: #ffffff;
+    color: #171f46;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 7px;
+  }
+}
