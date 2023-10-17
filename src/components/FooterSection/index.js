@@ -4,20 +4,12 @@ import './index.css'
 
 const Footer = () => (
   <div className="foo-container">
-    <ul className="footer-section-container">
-      <li className="footer-icon">
-        <FaGoogle size={25} color="#ffffff" className="social-icon" />
-      </li>
-      <li className="footer-icon">
-        <FaTwitter size={25} color="#ffffff" className="social-icon" />
-      </li>
-      <li className="footer-icon">
-        <FaInstagram size={25} color="#ffffff" className="social-icon" />
-      </li>
-      <li className="footer-icon">
-        <FaYoutube size={25} color="#ffffff" className="social-icon" />
-      </li>
-    </ul>
+    <div className="footer-section-container">
+      <FaGoogle size={25} color="#ffffff" className="social-icon" />
+      <FaTwitter size={25} color="#ffffff" className="social-icon" />
+      <FaInstagram size={25} color="#ffffff" className="social-icon" />
+      <FaYoutube size={25} color="#ffffff" className="social-icon" />
+    </div>
     <p className="footer-contact-us">Contact us</p>
   </div>
 )

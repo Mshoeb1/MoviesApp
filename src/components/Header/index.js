@@ -7,7 +7,7 @@ import {MdMenuOpen} from 'react-icons/md'
 import './index.css'
 
 class Header extends Component {
-  state = {showMenu: false, currentPath: ''}
+  state = {showMenu: false, currentPath: '', searchInput: ''}
 
   componentDidMount() {
     const path = window.location.pathname
@@ -20,10 +20,12 @@ class Header extends Component {
   }
 
   onShowSearchInput = () => {
-    const {getSearchData} = this.props
+    const {searchInput} = this.state
+    const {getSearchData, onUpdateSearchValue} = this.props
     const showInput = this.showSearchInput()
     if (showInput) {
       getSearchData()
+      onUpdateSearchValue(searchInput)
     }
   }
 
@@ -32,22 +34,23 @@ class Header extends Component {
   }
 
   onChangeSearchInput = event => {
-    const {changeSearchInput} = this.props
-    changeSearchInput(event.target.value)
+    this.setState({searchInput: event.target.value})
   }
 
   onKeyDownEnter = event => {
-    const {getSearchData} = this.props
+    const {searchInput} = this.state
+    const {getSearchData, onUpdateSearchValue} = this.props
     if (event.key === 'Enter') {
       getSearchData()
+      onUpdateSearchValue(searchInput)
     }
   }
 
   render() {
-    console.log(HiOutlineSearch)
-    const {showMenu, currentPath} = this.state
+    const {showMenu, currentPath, searchInput} = this.state
     const showInput = this.showSearchInput()
     const inputClassName = showInput ? 'show' : ''
+    const footerClass = showInput ? 'footer-show' : ''
     const homeClassName = currentPath === '/' ? 'home' : ''
     const popularClassName = currentPath === '/popular' ? 'popular' : ''
     const buttonClass = showInput ? 'button-show' : ''
@@ -72,7 +75,7 @@ class Header extends Component {
               </Link>
             </ul>
           </div>
-          <div className="nav-footer-container">
+          <div className={`nav-footer-container ${footerClass}`}>
             <div className={`input-search-container ${inputClassName}`}>
               {showInput && (
                 <input
@@ -80,6 +83,7 @@ class Header extends Component {
                   type="search"
                   onChange={this.onChangeSearchInput}
                   onKeyDown={this.onKeyDownEnter}
+                  value={searchInput}
                 />
               )}
               <button
@@ -89,11 +93,7 @@ class Header extends Component {
                 testid="searchButton"
               >
                 <Link to="/search" className="link">
-                  <HiOutlineSearch
-                    size={25}
-                    color="#ffffff"
-                    className={`outline-search ${buttonClass}`}
-                  />
+                  <HiOutlineSearch size={22} color="#ffffff" />
                 </Link>
               </button>
             </div>
@@ -111,7 +111,7 @@ class Header extends Component {
               type="button"
               onClick={this.toggleMenuItem}
             >
-              <MdMenuOpen size={25} color="#ffffff" />
+              <MdMenuOpen size={22} color="#ffffff" />
             </button>
           </div>
         </div>

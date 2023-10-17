@@ -1,0 +1,24 @@
+.trending-links {
+  text-decoration: none;
+}
+
+.trending-slider-list {
+  list-style-type: none;
+}
+
+@media screen and (min-width: 768px) {
+  .trend-image {
+    width: 254px;
+    height: 170px;
+    border-radius: 10px;
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .trend-image {
+    width: 80%;
+    height: 90%;
+    border-radius: 7px;
+  }
+}

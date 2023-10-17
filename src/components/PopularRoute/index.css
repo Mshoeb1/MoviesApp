@@ -54,17 +54,10 @@
     align-items: center;
     flex-wrap: wrap;
     width: 90%;
-    margin: 40px;
     padding-left: 0px;
     list-style-type: none;
-  }
-
-  .popular-display-image {
-    height: 170px;
-    width: 275px;
-    border-radius: 8px;
-    margin-right: 15px;
-    margin-bottom: 15px;
+    height: 90vh;
+    overflow-y: auto;
   }
 }
 
@@ -75,25 +68,9 @@
     justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
-    width: 90%;
-    margin: 20px;
+    width: 80%;
     padding-left: 0px;
     list-style-type: none;
-  }
-
-  .popular-link {
-    list-style-type: none;
-  }
-  .pl-link {
-    text-decoration: none;
-  }
-
-  .popular-display-image {
-    height: 100px;
-    width: 90px;
-    border-radius: 8px;
-    margin-right: 10px;
-    margin-bottom: 10px;
   }
 
   .fl-image {

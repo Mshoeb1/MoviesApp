@@ -1,0 +1,43 @@
+@media screen and (min-width: 768px) {
+  .similar-movie-list {
+    list-style-type: none;
+    margin-right: 20px;
+    width: 255px;
+    height: 178px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+
+  .similar-image {
+    list-style-type: none;
+    margin-right: 20px;
+    width: 255px;
+    height: 178px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+}
+
+.movie-link {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 767px) {
+  .similar-movie-list {
+    list-style-type: none;
+    margin-right: 10px;
+    width: 80px;
+    height: 64px;
+    border-radius: 10px;
+    margin-bottom: 14px;
+  }
+
+  .similar-image {
+    list-style-type: none;
+    margin-right: 10px;
+    width: 80px;
+    height: 64px;
+    border-radius: 10px;
+    margin-bottom: 14px;
+  }
+}

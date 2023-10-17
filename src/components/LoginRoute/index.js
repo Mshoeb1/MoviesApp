@@ -29,15 +29,15 @@ class LoginRoute extends Component {
     history.replace('/')
   }
 
-  onSubmitFailure = errorMsg => {
-    this.setState({showSubmitError: true, errorMsg})
+  onSubmitFailure = error => {
+    this.setState({showSubmitError: true, errorMsg: error})
   }
 
   submitForm = async event => {
     event.preventDefault()
     const {username, password} = this.state
     const userDetails = {username, password}
-    const url = 'https://apis.ccbp.in/login'
+    const url = `https://apis.ccbp.in/login`
     const options = {
       method: 'POST',
       body: JSON.stringify(userDetails),
@@ -113,7 +113,7 @@ class LoginRoute extends Component {
           <button type="submit" className="login-button">
             Login
           </button>
-          {showSubmitError && <p className="error-message">*{errorMsg}</p>}
+          {showSubmitError && <p className="error-message">{errorMsg}</p>}
         </form>
       </div>
     )

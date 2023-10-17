@@ -1,11 +1,9 @@
 import {Component} from 'react'
-
-import {Link} from 'react-router-dom'
-
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import Header from '../Header'
 import FooterSection from '../FooterSection'
+import CommonMovieItem from '../CommonMovieItem'
 import './index.css'
 
 const apiConstants = {
@@ -13,19 +11,6 @@ const apiConstants = {
   progress: 'PROGRESS',
   success: 'SUCCESS',
   failure: 'FAILURE',
-}
-
-const RenderPopularData = props => {
-  const {data} = props
-  const {id, posterPath, title} = data
-
-  return (
-    <Link to={`/movies/${id}`} className="pl-link">
-      <li className="popular-link">
-        <img src={posterPath} alt={title} className="popular-display-image" />
-      </li>
-    </Link>
-  )
 }
 
 class PopularRoute extends Component {
@@ -91,7 +76,7 @@ class PopularRoute extends Component {
     return (
       <ul className="popular-movie-container">
         {popularData.map(eachImage => (
-          <RenderPopularData data={eachImage} key={eachImage.id} />
+          <CommonMovieItem commonData={eachImage} key={eachImage.id} />
         ))}
       </ul>
     )
@@ -114,7 +99,7 @@ class PopularRoute extends Component {
 
   render() {
     return (
-      <div className="popular-main-container">
+      <div testid="popularItem" className="popular-main-container">
         <Header />
         {this.renderFinalView()}
         <FooterSection />

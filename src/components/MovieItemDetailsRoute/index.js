@@ -1,10 +1,10 @@
 import {Component} from 'react'
-import {Link} from 'react-router-dom'
 import format from 'date-fns/format'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import Header from '../Header'
 import FooterSection from '../FooterSection'
+import SimilarMovie from '../SimilarMovie'
 import './index.css'
 
 const apiConstants = {
@@ -12,27 +12,6 @@ const apiConstants = {
   progress: 'PROGRESS',
   success: 'SUCCESS',
   failure: 'FAILURE',
-}
-
-const RenderSimilarMovieView = props => {
-  const {similarData, getMovieItemData} = props
-  const {id, posterPath, title} = similarData
-  const onClickGetData = () => {
-    getMovieItemData()
-  }
-
-  return (
-    <li className="similar-movie-list">
-      <Link to={`/movies/${id}`} className="movie-link">
-        <img
-          src={posterPath}
-          alt={title}
-          className="similar-image"
-          onClick={onClickGetData}
-        />
-      </Link>
-    </li>
-  )
 }
 
 class MovieItem extends Component {
@@ -129,7 +108,7 @@ class MovieItem extends Component {
   )
 
   renderFailureView = () => (
-    <div className="failure-container">
+    <div testId="movieItem" className="failure-container">
       <img
         src="https://res.cloudinary.com/dwekbzmuw/image/upload/v1694179133/Background-Complete_dg1f4u.png"
         alt="failure view"
@@ -173,7 +152,7 @@ class MovieItem extends Component {
     return (
       <ul className="similar-movie-container">
         {similarMovieData.map(eachSm => (
-          <RenderSimilarMovieView
+          <SimilarMovie
             similarData={eachSm}
             key={eachSm.id}
             getMovieItemData={this.getMovieItemData}
@@ -237,10 +216,8 @@ class MovieItem extends Component {
             <p className="release-date-para">{this.renderFormattedDate()}</p>
           </div>
         </div>
-        <div className="similar-body-container">
-          <h1 className="similar-body-heading">More like this</h1>
-          {this.renderSimilarMovies()}
-        </div>
+        <h1 className="similar-body-heading">More like this</h1>
+        {this.renderSimilarMovies()}
         <FooterSection />
       </div>
     )

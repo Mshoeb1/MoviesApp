@@ -1,11 +1,10 @@
 import {Component} from 'react'
-import {Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
-
 import Header from '../Header'
-
 import FooterSection from '../FooterSection'
+import SearchMovieItem from '../SearchMovieItem'
+
 import './index.css'
 
 const apiConstants = {
@@ -15,39 +14,26 @@ const apiConstants = {
   failure: 'FAILURE',
 }
 
-const RenderSearchData = props => {
-  const {searchData} = props
-  const {id, posterPath, title} = searchData
-
-  return (
-    <Link to={`/movies/${id}`} className="search-link">
-      <li className="search-item">
-        <img src={posterPath} alt={title} className="search-image" />
-      </li>
-    </Link>
-  )
-}
-
 class SearchRoute extends Component {
   state = {
     searchData: [],
     activeApi: apiConstants.initial,
-    searchInput: '',
+    searchValue: '',
   }
 
   componentDidMount() {
     this.getSearchData()
   }
 
-  changeSearchInput = event => {
-    this.setState({searchInput: event})
+  onUpdateSearchValue = value => {
+    this.setState({searchValue: value})
   }
 
   getSearchData = async () => {
-    const {searchInput} = this.state
+    const {searchValue} = this.state
     this.setState({activeApi: apiConstants.progress})
     const jwtToken = Cookies.get('jwt_token')
-    const apiUrl = `https://apis.ccbp.in/movies-app/movies-search?search=${searchInput}`
+    const apiUrl = `https://apis.ccbp.in/movies-app/movies-search?search=${searchValue}`
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -98,9 +84,9 @@ class SearchRoute extends Component {
   )
 
   renderSearchResult = () => {
-    const {searchData, searchInput} = this.state
+    const {searchData, searchValue} = this.state
     const filterData = searchData.filter(eachItem =>
-      eachItem.title.toLowerCase().includes(searchInput.toLowerCase()),
+      eachItem.title.toLowerCase().includes(searchValue.toLowerCase()),
     )
     console.log(filterData)
 
@@ -108,7 +94,7 @@ class SearchRoute extends Component {
       <ul className="search-input-container">
         {filterData.length > 0 ? (
           filterData.map(eachImage => (
-            <RenderSearchData searchData={eachImage} key={eachImage.id} />
+            <SearchMovieItem searchData={eachImage} key={eachImage.id} />
           ))
         ) : (
           <div className="no-search-container">
@@ -118,7 +104,7 @@ class SearchRoute extends Component {
               className="no-search-image"
             />
             <p className="no-search-para">
-              Your search for {searchInput} did not find any matches.
+              Your search for {searchValue} did not find any matches.
             </p>
           </div>
         )}
@@ -143,10 +129,11 @@ class SearchRoute extends Component {
 
   render() {
     return (
-      <div className="search-main-container">
+      <div testid="searchItem" className="search-main-container">
         <Header
           changeSearchInput={this.changeSearchInput}
           getSearchData={this.getSearchData}
+          onUpdateSearchValue={this.onUpdateSearchValue}
         />
         {this.renderFinalView()}
         <FooterSection />
